@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Coast Cover Lab — GTA-style cover art maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">VICE COAST <span>COVER LAB</span></div>
+  <div class="tagline">Multi-panel poster covers &middot; sunset &amp; neon grades &middot; export PNG</div>
+</header>
+
+<main id="editor" class="workbench">
+  <section class="stage">
+    <div id="dropZone" class="dropzone">
+      <canvas id="preview" width="1080" height="1080"></canvas>
+      <p class="hint">Drag a photo here, or use Upload. Drag inside a panel to reposition its photo; scroll to zoom it.</p>
+    </div>
+    <p id="panelInfo" class="panelinfo">Panel 1/9</p>
+    <p id="photoCount" class="photocount"></p>
+    <div id="thumbs" class="thumbs"></div>
+  </section>
+
+  <aside class="controls">
+    <section class="panel">
+      <h2>1 &middot; Photos</h2>
+      <button id="uploadBtn" class="btn primary">Upload photos</button>
+      <button id="sampleBtn" class="btn">Use sample photos</button>
+      <input id="fileInput" type="file" accept="image/*" multiple hidden>
+      <p class="note">Photos stay on your machine &mdash; nothing is uploaded.</p>
+    </section>
+
+    <section class="panel">
+      <h2>2 &middot; Layout &amp; grade</h2>
+      <label>Layout
+        <select id="layoutSel"></select>
+      </label>
+      <label>Colour grade
+        <select id="gradeSel"></select>
+      </label>
+      <label>Export size
+        <select id="sizeSel"></select>
+      </label>
+      <label class="check"><input type="checkbox" id="spreadChk" checked> Spread photos across panels (different crop each)</label>
+      <label class="check"><input type="checkbox" id="tiltChk"> Tilt the whole cover &minus;3&deg;</label>
+    </section>
+
+    <section class="panel">
+      <h2>3 &middot; Caption</h2>
+      <label>Title
+        <input id="titleInput" type="text" maxlength="40" value="VICE COAST">
+      </label>
+      <label>Subtitle
+        <input id="subInput" type="text" maxlength="60" value="Welcome to the Coast">
+      </label>
+      <label>Badge
+        <input id="badgeInput" type="text" maxlength="16" value="EST. 2026">
+      </label>
+    </section>
+
+    <section class="panel">
+      <h2>4 &middot; Crop the selected panel</h2>
+      <div id="cropRow" class="croprow"></div>
+      <label>Zoom
+        <input id="zoomRange" type="range" min="1" max="2.5" step="0.01" value="1.05">
+      </label>
+      <p class="note">Nine face-safe crops (C1&ndash;C9): focus stays high in the frame so faces survive. Drag the panel to pan.</p>
+    </section>
+
+    <section class="panel export">
+      <h2>5 &middot; Export</h2>
+      <button id="exportBtn" class="btn primary big">Export PNG</button>
+      <button id="exportAllBtn" class="btn big">Export all three sizes</button>
+      <p class="note">Sizes: 1080 &times; 1080 &middot; 1080 &times; 1350 &middot; 1920 &times; 1080. PNG, ready to post.</p>
+    </section>
+  </aside>
+</main>
+
+<canvas id="coverCanvas" hidden></canvas>
+<div id="selftest-result" data-ok=""></div>
+
+<script type="module" src="editor.js"></script>
+</body>
+</html>
